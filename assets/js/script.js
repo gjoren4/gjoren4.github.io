@@ -196,7 +196,7 @@ $(document).ready(function () {
     }
   };
 
-  let timer;
+  let timer = null;
   const getTimer = () => {
     timer = setInterval(() => {
       const time = generateTimeInfo();
@@ -213,27 +213,30 @@ $(document).ready(function () {
   };
 
   $("#start-timer").click(() => {
-    const sessionLength =
-      $("#remainingTime").val() / 60 || $("#in-minutes").val();
-    if (sessionLength == 0) return;
+    if (!timer) {
+      const sessionLength =
+        $("#remainingTime").val() / 60 || $("#in-minutes").val();
+      if (sessionLength == 0) return;
 
-    $("#remainingTime").val(sessionLength * 60);
+      $("#remainingTime").val(sessionLength * 60);
 
-    setInitial();
-    startTimer();
-    getTimer();
+      setInitial();
+      startTimer();
+      getTimer();
+    }
   });
 
   $("#stop-timer").click(() => {
-    if ($("#remainingTime").val() > 0) {
+    if (timer && $("#remainingTime").val() > 0) {
       $("#remainingTime").val(parseInt($("#remainingTime").val()) + 1);
     }
     clearInterval(timer);
+    timer = null;
   });
 
   $("#clear-timer").click(() => {
     clearInterval(timer);
-    $("#in-minutes").val(0);
+    $("#in-minutes").val(10);
     $("#remainingTime").val(0);
     setInitial();
   });
