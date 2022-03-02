@@ -239,6 +239,7 @@ $(document).ready(function () {
     $("#in-minutes").val(10);
     $("#remainingTime").val(0);
     setInitial();
+    timer = null;
   });
 
   const flipDigit = (flipHandles, digitValue) => {
