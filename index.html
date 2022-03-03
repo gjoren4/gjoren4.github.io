@@ -37,7 +37,7 @@
             = Pursuing
             an idea!!</h4>
         </span>
-        <div class="timer border border-dark rounded mx-4">
+        <div class="timer border border-dark rounded m-auto">
           <div class="m-3">TIMER</div>
           <div class="flip-clock justify-content-center">
             <div class="minutes flex-column">
@@ -122,25 +122,40 @@
         </div>
       </div>
       <div class="col">
-        <div class="h-100 d-grid gap-5 col-6 mx-auto">
-          <button class="btn btn-primary generateBtn" id="mainBtn">Main Idea <i class="d-none fa fa-refresh"></i>
-          </button>
-          <button class="btn btn-warning generateBtn" id="sentence2Btn">Sentence 2 <i
-              class="d-none fa fa-refresh"></i></button>
-          <button class="btn btn-warning generateBtn" id="sentence3Btn">Sentence 3 <i
-              class="d-none fa fa-refresh"></i></button>
-          <button class="btn btn-warning generateBtn" id="sentence4Btn">Sentence 4 <i
-              class="d-none fa fa-refresh"></i></button>
-          <button class="btn btn-danger generateBtn" id="endBtn">End it! <i class="d-none fa fa-refresh"></i></button>
+        <div class="d-flex">
+          <div class="col align-self-center">
+            <button class="bg-gradient btn btn-primary btn-lg generateBtn w-100" id="mainBtn">Main Idea <i class="d-none fa fa-refresh"></i>
+            </button>
+          </div>
+          <div class="emoji mainIdea text-center col"></div>
         </div>
-      </div>
-      <div class="col">
-        <div class="h-100 d-grid gap-5 col-6 mx-auto">
-          <div class="emoji mainIdea"></div>
-          <div class="emoji sentence2"></div>
-          <div class="emoji sentence3"></div>
-          <div class="emoji sentence4"></div>
-          <div class="emoji endSentence"></div>
+        <div class="d-flex">
+          <div class="col align-self-center">
+            <button class="bg-gradient btn btn-warning btn-lg generateBtn w-100" id="sentence2Btn">Sentence 2 <i
+              class="d-none fa fa-refresh"></i></button>
+          </div>
+          <div class="emoji sentence2 text-center col"></div>
+        </div>
+        <div class="d-flex">
+          <div class="col align-self-center">
+            <button class="bg-gradient btn btn-warning btn-lg generateBtn w-100" id="sentence3Btn">Sentence 3 <i
+              class="d-none fa fa-refresh"></i></button>
+          </div>
+          <div class="emoji sentence3 text-center col"></div>
+        </div>
+        <div class="d-flex">
+          <div class="col align-self-center">
+            <button class="bg-gradient btn btn-warning btn-lg generateBtn w-100" id="sentence4Btn">Sentence 4 <i
+              class="d-none fa fa-refresh"></i></button>
+          </div>
+          <div class="emoji sentence4 text-center col"></div>
+        </div>
+        <div class="d-flex">
+          <div class="col align-self-center">
+            <button class="bg-gradient btn btn-danger btn-lg generateBtn w-100" id="endBtn">End it! <i
+              class="d-none fa fa-refresh"></i></button>
+          </div>
+          <div class="emoji endSentence text-center col"></div>
         </div>
       </div>
     </div>

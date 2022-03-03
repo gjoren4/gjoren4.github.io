@@ -13,6 +13,10 @@
   --perspective: 200px;
 }
 
+.timer {
+  width: 400px;
+}
+
 #tagline {
   cursor: default;
 }
