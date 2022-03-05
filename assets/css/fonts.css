@@ -1,0 +1,19 @@
+@font-face {
+  font-family: Helvetica_Bolder;
+  src: url("../fonts/HelveticaNeue_Bolder.ttf");
+}
+
+@font-face {
+  font-family: Helvetica_Bold;
+  src: url("../fonts/HelveticaNeue_Bold.ttf");
+}
+
+@font-face {
+  font-family: Helvetica_Med;
+  src: url("../fonts/HelveticaNeue_Med.ttf");
+}
+
+@font-face {
+  font-family: Helvetica_Thin;
+  src: url("../fonts/HelveticaNeue_Thin.ttf");
+}
