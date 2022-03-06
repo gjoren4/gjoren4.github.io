@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#tagline").tooltip();
+  $(".circular").tooltip();
 
   $("#randomizeEmojis").modal("hide");
   const ppEmailRegistered = localStorage.getItem("ppEmailRegistered");
@@ -9,18 +9,19 @@ $(document).ready(function () {
     $("#staticBackdrop").modal("show");
   }
 
-  let state = false;
+  let state = [];
   const animate = (container) => {
-    if (state) {
-      $(`.slots${container}`).removeClass("loop");
+    if (state[container]) {
+      $(`.slots.${container}`).removeClass("loop");
       setTimeout(function () {
-        $(`.slots${container}`).addClass("stop");
+        $(`.slots.${container}`).addClass("stop");
       }, 1);
+      state[container] = false;
     } else {
-      $(`.slots${container}`).removeClass("stop");
-      $(`.slots${container}`).addClass("loop");
+      $(`.slots.${container}`).removeClass("stop");
+      $(`.slots.${container}`).addClass("loop");
+      state[container] = true;
     }
-    state = !state;
   };
 
   const getRandomEmoji = () => {
@@ -33,59 +34,51 @@ $(document).ready(function () {
   };
 
   const displayEmoji = (container) => {
-    $(`.emoji${container}`).html("");
+    $(`.emoji.${container}`).html("");
     const emojis = [];
+    emojis[container] = [];
     for (let i = 0; i < 20; i++) {
       let emoji = getRandomEmoji();
-      while (emojis.includes(emoji)) {
+      while (emojis[container].includes(emoji)) {
         emoji = getRandomEmoji();
       }
-      emojis.push(emoji);
+      emojis[container].push(emoji);
 
-      $(`.emoji${container}`).append(
+      $(`.emoji.${container}`).append(
         `<div>${emoji}</div>`
       );
     }
 
     animate(container);
 
-    let randomizeEmojis = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        animate(container);
-        resolve();
-      }, 1000);
-    });
-
-    randomizeEmojis.then(() => {
-      setTimeout(() => {
-        // $(container).html(emojis[1]);
-      }, 1250);
-    });
+    setTimeout(() => {
+      animate(container);
+    }, 1000);
   };
 
   $("#mainBtn").click(() => {
     $("#mainBtn > i").removeClass("d-none");
-    displayEmoji(".mainIdea");
+    displayEmoji("mainIdea");
   });
 
   $("#sentence2Btn").click(() => {
     $("#sentence2Btn > i").removeClass("d-none");
-    displayEmoji(".sentence2");
+    displayEmoji("sentence2");
   });
 
   $("#sentence3Btn").click(() => {
     $("#sentence3Btn > i").removeClass("d-none");
-    displayEmoji(".sentence3");
+    displayEmoji("sentence3");
   });
 
   $("#sentence4Btn").click(() => {
     $("#sentence4Btn > i").removeClass("d-none");
-    displayEmoji(".sentence4");
+    displayEmoji("sentence4");
   });
 
   $("#endBtn").click(() => {
     $("#endBtn > i").removeClass("d-none");
-    displayEmoji(".endSentence");
+    displayEmoji("endSentence");
   });
 
   $("#signup-form").submit((e) => {
@@ -110,4 +103,62 @@ $(document).ready(function () {
       }, 3000);
     });
   });
+
+  let countdown;
+  const reset = () => {
+    clearInterval(countdown);
+    $(".countdown").addClass("d-none");
+    $(".circle .left .progress").css("animation", "none")
+    $(".circle .right .progress").css("animation", "none")
+    $('.circular').removeClass("d-none");
+    $('.circular input').removeClass("d-none");
+    $(".number").val("");
+    $('.circular input').focus();
+  }
+
+  $("#showTimer").click(() => {
+    const isShowTimer = $("#showTimer").prop("checked");
+    reset();
+    if (!isShowTimer) {
+      $('.circular').addClass("d-none");
+    }
+  })
+
+  $(".number").on("keypress", (e) => {
+    if (e.which === 13) {
+      const length = parseFloat($(".number").val());
+      const inSeconds = length * 60;
+      /**set animation css prop */
+      $(".circle .left .progress").css("animation", `left ${inSeconds / 2}s linear both`)
+      $(".circle .right .progress").css("animation", `right ${inSeconds / 2}s linear both`)
+      $(".circle .right .progress").css("animation-delay", `${inSeconds / 2}s`)
+
+      let minutes = parseInt(length);
+      let seconds = (length - minutes) * 60;
+      $(".number").addClass("d-none");
+      $(".countdown").removeClass("d-none");
+      $(".countdown").text(`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`)
+      
+      countdown = setInterval(() => {
+        if (seconds === 0 && minutes > 0) {
+          minutes--;
+          seconds = 60;
+        }
+        seconds--;
+
+        if (seconds === 0 && minutes === 0) {
+          clearInterval(countdown);
+          setTimeout(() => {
+            $(".countdown").html('<span class="reset-timer p-3"><i class="fa fa-undo"></i></span>');
+          }, 1000)
+        }
+
+        $(".countdown").text(`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`);
+      }, 1000)
+    }
+  });
+
+  $(".circular").on("click", ".reset-timer", () => {
+    reset();
+  })
 });
