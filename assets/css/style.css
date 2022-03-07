@@ -177,6 +177,7 @@ input::-webkit-inner-spin-button {
 
 .signup-container .modal-content.thank-you {
   background-color: #3196c4 !important;
+  border: none;
 }
 
 .signup-container .modal-content.thank-you .form-container img {
