@@ -57,27 +57,22 @@ $(document).ready(function () {
   };
 
   $("#mainBtn").click(() => {
-    $("#mainBtn > i").removeClass("d-none");
     displayEmoji("mainIdea");
   });
 
   $("#sentence2Btn").click(() => {
-    $("#sentence2Btn > i").removeClass("d-none");
     displayEmoji("sentence2");
   });
 
   $("#sentence3Btn").click(() => {
-    $("#sentence3Btn > i").removeClass("d-none");
     displayEmoji("sentence3");
   });
 
   $("#sentence4Btn").click(() => {
-    $("#sentence4Btn > i").removeClass("d-none");
     displayEmoji("sentence4");
   });
 
   $("#endBtn").click(() => {
-    $("#endBtn > i").removeClass("d-none");
     displayEmoji("endSentence");
   });
 
