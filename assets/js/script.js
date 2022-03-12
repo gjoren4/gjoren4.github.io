@@ -156,4 +156,8 @@ $(document).ready(function () {
   $(".circular").on("click", ".reset-timer", () => {
     reset();
   })
+
+  $(".reset-btns").click(() => {
+    $(".emoji").html("")
+  })
 });

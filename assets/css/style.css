@@ -133,11 +133,11 @@ input::-webkit-inner-spin-button {
 }
 
 .slot > .emoji {
-  height: 90px;
+  height: 80px;
 }
 .slot > .emoji img {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
 }
 .slots.loop > .slot .emoji {
   -webkit-animation: slide 1s infinite linear;
@@ -145,7 +145,7 @@ input::-webkit-inner-spin-button {
   animation: slide 1s infinite linear;
 }
 .stop > .slot > .emoji {
-  top: -90px;
+  top: -80px;
   -webkit-animation: stop 0.5s normal forwards ease-in-out;
   -moz-animation: stop 0.5s normal forwards ease-in-out;
   animation: stop 0.5s normal linear;
@@ -157,16 +157,16 @@ input::-webkit-inner-spin-button {
     top: 0;
   }
   100% {
-    top: -1800px;
+    top: -1600px;
   }
 }
 
 @-webkit-keyframes stop {
   0% {
-    top: -180px;
+    top: -160px;
   }
   100% {
-    top: -90px;
+    top: -80px;
   }
 }
 
@@ -219,12 +219,21 @@ input::-webkit-inner-spin-button {
   font-size: 10px;
 }
 
+.wrapper {
+  height: 100vh;
+}
+
 .header img {
   width: 500px;
 }
 
+.header .form-check-input:checked {
+  background-color: #3196c4 !important;
+  border-color: #3196c4 !important;
+}
+
 .footer img {
-  width: 210px;
+  width: 155px;
 }
 
 .button-container button {
@@ -238,6 +247,20 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-container {
-  width: 330px;
-  left: 50px;
+  width: 300px;
+  left: 30px;
+}
+
+.reset-btns {
+  margin-left: -25px;
+}
+
+.reset-btns i {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70px;
+  vertical-align: middle;
+  cursor: pointer;
 }
