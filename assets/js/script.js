@@ -44,9 +44,7 @@ $(document).ready(function () {
       }
       emojis[container].push(emoji);
 
-      $(`.emoji.${container}`).append(
-        `<div>${emoji}</div>`
-      );
+      $(`.emoji.${container}`).append(`<div>${emoji}</div>`);
     }
 
     animate(container);
@@ -89,7 +87,7 @@ $(document).ready(function () {
       body: data,
     }).then(() => {
       localStorage.setItem("ppEmailRegistered", true);
-      $(".modal-content").addClass("thank-you")
+      $(".modal-content").addClass("thank-you");
       $(".modal-body > .form-container").html(
         "<div class='d-flex flex-column align-items-center'><img src='assets//images/thankyou_header.png' class='img-fluid' /><div><span class='font-bold'>Congratulations </span>you are one step closer to</div><div class='font-bold'>#TeachBetterWorkLess</div></div>"
       );
@@ -103,37 +101,54 @@ $(document).ready(function () {
   const reset = () => {
     clearInterval(countdown);
     $(".countdown").addClass("d-none");
-    $(".circle .left .progress").css("animation", "none")
-    $(".circle .right .progress").css("animation", "none")
-    $('.circular').removeClass("d-none");
-    $('.circular input').removeClass("d-none");
+    $(".circle .left .progress").css("animation", "none");
+    $(".circle .right .progress").css("animation", "none");
+    $(".circular").removeClass("d-none");
+    $(".circular input").removeClass("d-none");
     $(".number").val("");
-    $('.circular input').focus();
-  }
+    $(".circular input").focus();
+  };
 
   $("#showTimer").click(() => {
     const isShowTimer = $("#showTimer").prop("checked");
     reset();
     if (!isShowTimer) {
-      $('.circular').addClass("d-none");
+      $(".circular").addClass("d-none");
     }
-  })
+  });
 
+  const invalidChars = [
+    45, //minus
+    43, //plus
+    101, //e
+  ];
   $(".number").on("keypress", (e) => {
-    if (e.which === 13) {
+    if (invalidChars.includes(e.which)) e.preventDefault();
+    console.log($(".number").val())
+    if (e.which === 13 && !!$(".number").val()) {
       const length = parseFloat($(".number").val());
       const inSeconds = length * 60;
       /**set animation css prop */
-      $(".circle .left .progress").css("animation", `left ${inSeconds / 2}s linear both`)
-      $(".circle .right .progress").css("animation", `right ${inSeconds / 2}s linear both`)
-      $(".circle .right .progress").css("animation-delay", `${inSeconds / 2}s`)
+      $(".circle .left .progress").css(
+        "animation",
+        `left ${inSeconds / 2}s linear both`
+      );
+      $(".circle .right .progress").css(
+        "animation",
+        `right ${inSeconds / 2}s linear both`
+      );
+      $(".circle .right .progress").css("animation-delay", `${inSeconds / 2}s`);
 
       let minutes = parseInt(length);
       let seconds = (length - minutes) * 60;
       $(".number").addClass("d-none");
       $(".countdown").removeClass("d-none");
-      $(".countdown").text(`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`)
-      
+      $(".countdown").text(
+        `${minutes < 10 ? `0${minutes}` : minutes}:${
+          seconds < 10 ? `0${seconds}` : seconds
+        }`
+      );
+
       countdown = setInterval(() => {
         if (seconds === 0 && minutes > 0) {
           minutes--;
@@ -144,20 +159,26 @@ $(document).ready(function () {
         if (seconds === 0 && minutes === 0) {
           clearInterval(countdown);
           setTimeout(() => {
-            $(".countdown").html('<span class="reset-timer p-3"><i class="fa fa-undo"></i></span>');
-          }, 1000)
+            $(".countdown").html(
+              '<span class="reset-timer p-3"><i class="fa fa-undo"></i></span>'
+            );
+          }, 1000);
         }
 
-        $(".countdown").text(`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`);
-      }, 1000)
+        $(".countdown").text(
+          `${minutes < 10 ? `0${minutes}` : minutes}:${
+            seconds < 10 ? `0${seconds}` : seconds
+          }`
+        );
+      }, 1000);
     }
   });
 
   $(".circular").on("click", ".reset-timer", () => {
     reset();
-  })
+  });
 
   $(".reset-btns").click(() => {
-    $(".emoji").html("")
-  })
+    $(".emoji").html("");
+  });
 });
