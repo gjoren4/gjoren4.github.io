@@ -227,6 +227,14 @@ input::-webkit-inner-spin-button {
   width: 500px;
 }
 
+.header .burger-container {
+  bottom: -20px;
+}
+
+.header .burger-container .menu {
+  width: 150px;
+}
+
 .header .menu a:hover {
   background-color: #3196c466 !important;
 }
@@ -254,7 +262,7 @@ input::-webkit-inner-spin-button {
 
 .button-container button {
   width: 200px;
-  height: 50px;
+  height: 45px;
   border-radius: 20px;
 }
 
@@ -268,7 +276,8 @@ input::-webkit-inner-spin-button {
 }
 
 .reset-btns {
-  margin-left: -25px;
+  margin-left: -30px;
+  margin-top: 0.70rem;
 }
 
 .reset-btns i {
