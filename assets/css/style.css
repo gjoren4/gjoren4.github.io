@@ -227,6 +227,10 @@ input::-webkit-inner-spin-button {
   width: 500px;
 }
 
+.header .menu a:hover {
+  background-color: #3196c466 !important;
+}
+
 .header .form-check-input:checked {
   background-color: #3196c4 !important;
   border-color: #3196c4 !important;

@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     const index = Math.floor(Math.random() * emojis.length + 1);
     const emojiUrl = isAnimated ? "emoji-animated" : "emoji-standard";
-    return `<img src="assets/${emojiUrl}/${emojis[index - 1]}">`;
+    return `<img src="/assets/${emojiUrl}/${emojis[index - 1]}">`;
   };
 
   const displayEmoji = (container) => {
@@ -181,4 +181,14 @@ $(document).ready(function () {
   $(".reset-btns").click(() => {
     $(".emoji").html("");
   });
+
+  $(".navbar").click(() => {
+    if ($(".menu-container").is(":visible")) {
+      $(".menu-container").removeClass("d-block");
+      $(".menu-container").addClass("d-none");
+    } else {
+      $(".menu-container").removeClass("d-none");
+      $(".menu-container").addClass("d-block");
+    }
+  })
 });
