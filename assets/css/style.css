@@ -236,8 +236,20 @@ input::-webkit-inner-spin-button {
   border-color: #3196c4 !important;
 }
 
-.footer img {
-  width: 155px;
+.footer .img-container {
+  width: 210px;
+}
+
+@media (min-width: 576px) {
+  .footer .img-container {
+    width: 190px;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer .img-container {
+    width: 210px;
+  }
 }
 
 .button-container button {
